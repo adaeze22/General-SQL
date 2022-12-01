@@ -38,10 +38,10 @@ select * from producer where region = 'sousse'
 
 select sum(quantity), from harvest where number_wine = 12
 
-select quantity, category from wine inner join harvest on wine.number_wine = harvest.number_wine
+select sum(quantity), category from wine inner join harvest on wine.number_wine = harvest.number_wine GROUP BY category;
 
 select first_name, last_name, name,region, quantity from producer inner join harvest on producer.number_producer = harvest.number_producer
-where region = 'sousse' and quantity >=1
+where region = 'sousse' and number_wine >= 1 or quantity > 300 order by first_name, last_name;
 
-select number_producer, degree from wine inner join harvest on wine.number_wine = harvest.number_wine
+select number_wine from harvet inner join wine on wine.number_wine = harvest.number_wine
 where degree >12 and number_producer = 24
